@@ -25,7 +25,7 @@ public class HelloWorld {
         try {
             while (true) {
                 // parsing할 url 지정(API 키 포함해서)
-                String url = "http://openapi.seoul.go.kr:8088/756b6652796c656f38345a6a667866/xml/Vwsm_TrdhlWrcPopltnQq/1/5/2016";
+                String url = "http://openapi.seoul.go.kr:8088/756b6652796c656f38345a6a667866/xml/Vwsm_TrdhlWrcPopltnQq/1/5/2020";
 
                 DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
@@ -36,7 +36,7 @@ public class HelloWorld {
                 System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
                 // 파싱할 tag
-                NodeList nList = doc.getElementsByTagName("Vwsm_TrdhlWrcPopltnQq");
+                NodeList nList = doc.getElementsByTagName("row");
                 System.out.println("파싱할 리스트 수 : " + nList.getLength());
 
                 for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -44,19 +44,30 @@ public class HelloWorld {
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                         Element eElement = (Element) nNode;
+
+                        String year = getTagValue("STDR_YY_CD", eElement);
+                        String bungi = getTagValue("STDR_QU_CD", eElement);
+                        String trdarcode = getTagValue("TRDAR_SE_CD", eElement);
+                        String tadarnm = getTagValue("TRDAR_CD_NM", eElement);
+                        String code = getTagValue("TRDAR_CD", eElement);
+
                         System.out.println("######################");
                         //System.out.println(eElement.getTextContent());
-                        System.out.println("기준년코드  : " + getTagValue("STDR_YY_CD", eElement));
-                        System.out.println("분기 코드  : " + getTagValue("STDR_QU_CD", eElement));
-                        System.out.println("상권 구분 코드 : " + getTagValue("TRDAR_SE_CD", eElement));
-                        System.out.println("상권 구분 코드 명  : " + getTagValue("TRDAR_CD_NM", eElement));
+                        if (tadarnm.equals("창경궁로35길")) {
+                            System.out.println("기준년코드  : " + year);
+                            System.out.println("분기 코드  : " + bungi);
+                            System.out.println("상권 구분 코드 : " + trdarcode);
+                            System.out.println("상권 구분 코드 명  : " + tadarnm);
+                            System.out.println("상권 구분 코드  : " + code);
+                        }
 
                     }    // for end
                 }    // if end
 
+
                 page += 1;
                 System.out.println("page number : " + page);
-                if (page > 12) {
+                if (page > 1) {
                     break;
                 }
             }    // while end

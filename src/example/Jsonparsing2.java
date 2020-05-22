@@ -4,6 +4,7 @@ package example;
 //동작함
 
 import java.io.BufferedInputStream;
+import java.io.PrintWriter;
 import java.net.URL;
 
 import org.json.simple.JSONArray;

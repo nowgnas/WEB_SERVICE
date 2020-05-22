@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="WEB_SERVICE1" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="org.apache.tomcat:servlet-api:6.0.53" />
+          <element id="library" level="project" name="JAX-WS-Apache Axis" />
+        </element>
       </element>
     </root>
   </artifact>

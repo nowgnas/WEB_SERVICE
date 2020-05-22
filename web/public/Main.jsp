@@ -20,7 +20,7 @@
         <p class="text-xl">위치를 입력하세요.</p>
     </div>
     <div class="m-2">
-        <form action="public/JsonParsing.jsp" method="post">
+        <form action="RQ" method="post">
             <p>도로명 주소 선택</p>
             <select name="gil">
                 <option value="창신2길">창신2길</option>

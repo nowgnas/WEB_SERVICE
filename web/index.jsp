@@ -53,7 +53,7 @@
     </nav>
 </section>
 <div>
-    <a href="request">my </a>
+    <%=request.getAttribute("gil")%>
 </div>
 
 

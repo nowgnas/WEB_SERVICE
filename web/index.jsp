@@ -13,8 +13,8 @@
 <head>
     <title>WEBSERVICE</title>
     <link rel="stylesheet" href="public/build/tailwind.css">
+    <link rel="stylesheet" href="public/build/custom.css">
     <script src="Loginpopup.js" type="text/javascript"></script>
-
 </head>
 <body>
 <!--title -->
@@ -31,28 +31,33 @@
     </nav>
 </section>
 <!--print, input area-->
-<section class="grid grid-rows-4 grid-flow-col gap-2">
-    <nav class="row-span-3 col-span-3">
+<section class="flex">
+    <nav class="flex p-1 w-3/5 h-map">
         <jsp:include page="Apidata/Map.jsp" flush="false"/>
     </nav>
 
     <!--Input-->
-    <nav class="row-span-2 col-span-2 bg-teal-200">
-        <jsp:include page="public/Main.jsp" flush="false"/>
+    <nav class="flex bg-teal-200">
+        <div>
+            <jsp:include page="public/Main.jsp" flush="false"/>
+        </div>
+        <div>
+            <div>User information</div>
+            <br>
+            <div>
+                기준 년 코드: <%=request.getAttribute("year")%><br>
+                번지 = <%=request.getAttribute("bungi")%><br>
+                상권 분류 코드 = <%=request.getAttribute("trdarcode")%><br>
+                상권 이름 = <%=request.getAttribute("gil")%><br>
+                상권 코드 = <%=request.getAttribute("bungi")%>
+            </div>
+        </div>
     </nav>
 </section>
 <section>
     <!--print-->
-    <nav class="row-span-3 col-span-2">
-        <div>User information</div>
-        <br>
-        <div>
-            기준 년 코드: <%=request.getAttribute("year")%><br>
-            번지 = <%=request.getAttribute("bungi")%><br>
-            상권 분류 코드 = <%=request.getAttribute("trdarcode")%><br>
-            상권 이름 = <%=request.getAttribute("gil")%><br>
-            상권 코드 = <%=request.getAttribute("bungi")%>
-        </div>
+    <nav>
+
     </nav>
 </section>
 </body>

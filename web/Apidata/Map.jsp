@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-<div id="map" style="width:100%;height:400px;"></div>
+<div id="map" style="width:100%;height:100%;"></div>
 <script language="JavaScript" type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f261be6511a4d3977d69ca432448bbd2"></script>
 <script language="JavaScript">

@@ -49,15 +49,9 @@
                 번지 = <%=request.getAttribute("bungi")%><br>
                 상권 분류 코드 = <%=request.getAttribute("trdarcode")%><br>
                 상권 이름 = <%=request.getAttribute("gil")%><br>
-                상권 코드 = <%=request.getAttribute("bungi")%>
+                상권 코드 = <%=request.getAttribute("code")%>
             </div>
         </div>
-    </nav>
-</section>
-<section>
-    <!--print-->
-    <nav>
-
     </nav>
 </section>
 </body>

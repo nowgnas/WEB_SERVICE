@@ -24,9 +24,8 @@
             <p>도로명 주소 선택</p>
             <select name="gil">
                 <option value="창신2길">창신2길</option>
-                <option>강동구</option>
-                <option>강남구</option>
-                <option>양천구</option>
+                <option>창신길</option>
+                <option>창경궁로35길</option>
             </select><br>
             <input type="submit" value="전송" name="submitbtn">
         </form>

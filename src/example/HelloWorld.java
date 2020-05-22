@@ -1,5 +1,6 @@
 package example;
 
+//기본 XML파싱 코드
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 

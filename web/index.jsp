@@ -47,15 +47,13 @@
         <div>User information</div>
         <br>
         <div>
-            도로명 주소: <%=request.getParameter("gil")%>
-            코드: <%= request.getParameter("code")%>
+            기준 년 코드: <%=request.getAttribute("year")%><br>
+            번지 = <%=request.getAttribute("bungi")%><br>
+            상권 분류 코드 = <%=request.getAttribute("trdarcode")%><br>
+            상권 이름 = <%=request.getAttribute("gil")%><br>
+            상권 코드 = <%=request.getAttribute("bungi")%>
         </div>
     </nav>
 </section>
-<div>
-    <%=request.getAttribute("gil")%>
-</div>
-
-
 </body>
 </html>

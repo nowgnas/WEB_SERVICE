@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+//서울시 우리마을가게 상권분석서비스(상권배후지-직장인구)
+//http://data.seoul.go.kr/dataList/OA-15570/S/1/datasetView.do;jsessionid=68B960D4637D1C546FAA6C39EB9C32A7.new_portal-svr-11
 
 @WebServlet("/RQ")
 public class Seoul_data_Json extends HttpServlet {
@@ -29,13 +32,12 @@ public class Seoul_data_Json extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String gil = request.getParameter("gil");
 
-
-        response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
-        out.println("<html><body>");
 
         int page = 1;    // 페이지 초기값
         try {
@@ -68,15 +70,22 @@ public class Seoul_data_Json extends HttpServlet {
                         String code = getTagValue("TRDAR_CD", eElement);
 
 
-                        //System.out.println(eElement.getTextContent());
+                        //out.println(eElement.getTextContent());
                         if (tadarnm.equals(gil)) {
-                            out.println("기준년코드  : " + year + "<br>");
-                            out.println("분기 코드  : " + bungi + "<br>");
-                            out.println("상권 구분 코드 : " + trdarcode + "<br>");
-                            out.println("상권 구분 코드 명  : " + tadarnm + "<br>");
-                            out.println("상권 구분 코드  : " + code + "<br>");
-                        }
+                            request.setAttribute("year", year);
+                            request.setAttribute("bungi", bungi);
+                            request.setAttribute("trdarcode", trdarcode);
+                            request.setAttribute("gil", tadarnm);
+                            request.setAttribute("code", code);
 
+                            ServletContext app = this.getServletContext();
+                            RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");
+                            try {
+                                dispatcher.forward(request, response);
+                            } catch (ServletException e) {
+                                out.println(e);
+                            }
+                        }
                     }    // for end
                 }    // if end
 
@@ -98,7 +107,7 @@ public class Seoul_data_Json extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
-        doPost(request, response);
+
     }
 }
 

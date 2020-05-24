@@ -23,7 +23,7 @@
         <form action="RQ" method="post">
             <p>도로명 주소 선택</p>
             <select name="gil">
-                <option value="창신2길">창신2길</option>
+                <option>창신2길</option>
                 <option>창신길</option>
                 <option>창경궁로35길</option>
             </select><br>

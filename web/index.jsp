@@ -32,7 +32,7 @@
 </section>
 <!--print, input area-->
 <section class="flex">
-    <nav class="flex p-1 w-3/5 h-map">
+    <nav class=" p-1 w-3/5 h-map">
         <jsp:include page="Apidata/Map.jsp" flush="false"/>
     </nav>
 

@@ -5,7 +5,7 @@ window.onload = function () {
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
+            level: 4 // 지도의 확대 레벨
         };
 
 // 지도를 생성합니다
@@ -13,11 +13,10 @@ window.onload = function () {
 
 // 장소 검색 객체를 생성합니다
     var ps = new kakao.maps.services.Places();
-
-    var search = document.getElementsByName("gil");
-
+    var set = document.getElementsByName("gil").value;
+    console.log(set);
 // 키워드로 장소를 검색합니다
-    ps.keywordSearch('이태원 맛집', placesSearchCB);
+    ps.keywordSearch("창신길", placesSearchCB);
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
     function placesSearchCB(data, status, pagination) {
@@ -53,4 +52,13 @@ window.onload = function () {
             infowindow.open(map, marker);
         });
     }
+
+    function send() {
+        document.doroname.action = 'RQ';
+        document.doroname.method = post;
+        document.doroname.submit();
+
+    }
+
+    send();
 }

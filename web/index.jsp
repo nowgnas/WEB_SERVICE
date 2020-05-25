@@ -20,7 +20,9 @@
 <!--title -->
 <section class="m-2 flex">
     <nav class="w-11/12">
-        <div class="text-4xl font-bold text-center text-blue-500">WEB SERVICE</div>
+        <div class="text-4xl font-bold text-center text-blue-500"><a
+                href="http://localhost:8080/WEB_SERVICE1_war_exploded/">WEB SERVICE</a>
+        </div>
     </nav>
     <!--login button -->
     <nav class="w-1/12">

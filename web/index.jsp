@@ -57,8 +57,8 @@
                     <p>도로명 선택</p>
                     <input class="rounded border-solid border-2 w-full" list="gil" name="gil">
                     <datalist id="gil">
-                        <option value="창신길">창신길</option>
-                        <option value="창신2길">창신2길</option>
+                        <option value="창신길"/>
+                        <option value="창신2길"/>
                     </datalist>
                 </div>
                 <input type="submit" value="전송" name="submitbtn">
@@ -75,9 +75,6 @@
 
     <!--Input-->
     <nav class="flex bg-teal-200">
-        <div>
-            <jsp:include page="public/Main.jsp" flush="false"/>
-        </div>
         <div>
             <div>User information</div>
             <br>

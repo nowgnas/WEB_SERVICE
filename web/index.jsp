@@ -8,6 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%
     request.setCharacterEncoding("utf-8");
+    String gil = (String) request.getAttribute("gil");
+    String year = (String) request.getAttribute("year");
+    String bungi = (String) request.getAttribute("bungi");
+    String trdarcode = (String) request.getAttribute("trdarcode");
+    String code = (String) request.getAttribute("code");
 %>
 <html>
 <head>
@@ -39,7 +44,7 @@
         <%--지도 --%>
         <%--구 도로명 선택 --%>
         <section class="flex">
-            <form class="flex bg-purple-100 w-3/5" action="#" method="post" name="doroname">
+            <form class="flex bg-purple-100 w-3/5" action="00" method="post" name="doroname">
                 <div class="flex-1  w-1/5">
                     <p>구 선택</p>
                     <select name="gu">
@@ -58,9 +63,6 @@
                 </div>
                 <input type="submit" value="전송" name="submitbtn">
             </form>
-            <div>
-
-            </div>
         </section>
         <%--지도 --%>
 
@@ -80,12 +82,19 @@
             <div>User information</div>
             <br>
             <div>
-                기준 년 코드: <%=request.getAttribute("year")%><br>
-                번지 = <%=request.getAttribute("bungi")%><br>
-                상권 분류 코드 = <%=request.getAttribute("trdarcode")%><br>
-                상권 이름 = <p id="settext">
-                <p/>
-                상권 코드 = <%=request.getAttribute("code")%>
+                기준 년 코드: <%=year%>
+            </div>
+            <div>
+                번지 = <%=bungi%><br>
+            </div>
+            <div>
+                상권 분류 코드 = <%=trdarcode%><br>
+            </div>
+            <div id="gilname">
+                상권 이름 = <%=gil%> <br>
+            </div>
+            <div>
+                상권 코드 = <%=code%>
             </div>
         </div>
     </nav>

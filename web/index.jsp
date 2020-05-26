@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="public/build/tailwind.css">
     <link rel="stylesheet" href="public/build/custom.css">
     <script src="Loginpopup.js" type="text/javascript"></script>
-    <script src="Map.js"></script>
+    <script src="Apidata/MapJS.js"></script>
 </head>
 <body>
 <!--title -->
@@ -44,7 +44,7 @@
         <%--지도 --%>
         <%--구 도로명 선택 --%>
         <section class="flex">
-            <form class="flex bg-purple-100 w-3/5" action="00" method="post" name="doroname">
+            <form class="flex bg-purple-100 w-3/5" action="RQ" method="post" name="doroname">
                 <div class="flex-1  w-1/5">
                     <p>구 선택</p>
                     <select name="gu">
@@ -90,8 +90,9 @@
             <div>
                 상권 분류 코드 = <%=trdarcode%><br>
             </div>
-            <div id="gilname">
-                상권 이름 = <%=gil%> <br>
+            <div>
+                상권 이름 = <span id="gilname"><%=gil%>
+            </span> <br>
             </div>
             <div>
                 상권 코드 = <%=code%>

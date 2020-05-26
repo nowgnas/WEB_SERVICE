@@ -1,7 +1,6 @@
 window.onload = function () {
 
-    var gil = document.getElementById("gilname");
-    console.log(gil);
+    var gil = document.getElementById("gilname").innerText;
 
     // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
     var infowindow = new kakao.maps.InfoWindow({zIndex: 1});
@@ -19,7 +18,7 @@ window.onload = function () {
     var ps = new kakao.maps.services.Places();
 
 // 키워드로 장소를 검색합니다
-    ps.keywordSearch("창경궁로35길", placesSearchCB);
+    ps.keywordSearch(gil, placesSearchCB);
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
     function placesSearchCB(data, status, pagination) {

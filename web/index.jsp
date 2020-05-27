@@ -44,25 +44,7 @@
         <%--지도 --%>
         <%--구 도로명 선택 --%>
         <section class="flex">
-            <form class="flex bg-purple-100 w-3/5" action="RQ" method="post" name="doroname">
-                <div class="flex-1  w-1/5">
-                    <p>구 선택</p>
-                    <select name="gu">
-                        <option>종로구</option>
-                        <option>강서구</option>
-                    </select>
-                </div>
-                <%--submit을 버튼으로 만들기--%>
-                <div class="flex-1 w-1/5">
-                    <p>도로명 선택</p>
-                    <input class="rounded border-solid border-2 w-full" list="gil" name="gil">
-                    <datalist id="gil">
-                        <option value="창신길"/>
-                        <option value="창신2길"/>
-                    </datalist>
-                </div>
-                <input type="submit" value="전송" name="submitbtn">
-            </form>
+            <jsp:include page="Select/Gu.jsp" flush="false"/>
         </section>
         <%--지도 --%>
 

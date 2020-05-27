@@ -48,12 +48,13 @@ public class Gucode {
 
                         String cdname = getTagValue("TRDAR_CD_NM", eElement);
                         String sigungu = getTagValue("SIGNGU_CD", eElement);
-                        String dongcode = getTagValue("ADSTRD_CD", eElement);
 
 
                         //out.println(eElement.getTextContent());
-                        if (sigungu.equals("11470")) {
+                        if (sigungu.equals("11110")) {
                             System.out.println("도로명: " + cdname);
+                            System.out.println("코드: " + sigungu);
+
                             System.out.println("---------------------");
                         }
                     }    // for end

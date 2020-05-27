@@ -14,15 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
-//서울시 우리마을가게 상권분석서비스(상권배후지-직장인구)
-//http://data.seoul.go.kr/dataList/OA-15570/S/1/datasetView.do;jsessionid=68B960D4637D1C546FAA6C39EB9C32A7.new_portal-svr-11
-
-@WebServlet("/RQ")
-public class Seoul_data_Json extends HttpServlet {
+@WebServlet("/GUXML")
+public class GuXML extends HttpServlet {
     private static String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
         Node nValue = (Node) nlList.item(0);
@@ -35,7 +32,6 @@ public class Seoul_data_Json extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
-        String gil = request.getParameter("gil");
         String gubname = request.getParameter("Guselect");
 
         PrintWriter out = response.getWriter();
@@ -43,37 +39,21 @@ public class Seoul_data_Json extends HttpServlet {
         int page = 1;    // 페이지 초기값
         try {
             while (true) {
-                // parsing할 url 지정(API 키 포함해서)
-                //직장인구
-                String url = "http://openapi.seoul.go.kr:8088/756b6652796c656f38345a6a667866/xml/Vwsm_TrdhlWrcPopltnQq/1/1000/2020";
-                //상권 영역
+                // parsing할 url2 지정(API 키 포함해서)
                 String url2 = "http://openapi.seoul.go.kr:8088/725646724b6c656f313035735a4c5445/xml/TbgisTrdarRelm/1/1000/";
-
                 DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
-                Document doc = dBuilder.parse(url);
                 Document doc2 = dBuilder.parse(url2);
-
-
-                // root tag
-                doc.getDocumentElement().normalize();
-                System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
                 // root tag
                 doc2.getDocumentElement().normalize();
                 System.out.println("Root element :" + doc2.getDocumentElement().getNodeName());
 
                 // 파싱할 tag
-                NodeList nList = doc.getElementsByTagName("row");
-                System.out.println("파싱할 리스트 수 : " + nList.getLength());
-
-                // 파싱할 tag
                 NodeList nList2 = doc2.getElementsByTagName("row");
-                System.out.println("파싱할 리스트 수 : " + nList.getLength());
+                System.out.println("파싱할 리스트 수 : " + nList2.getLength());
 
-
-                for (int temp = 0; temp < nList.getLength(); temp++) {
-                    Node nNode = nList.item(temp);
+                for (int temp = 0; temp < nList2.getLength(); temp++) {
                     Node nNode2 = nList2.item(temp);
                     if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -86,35 +66,6 @@ public class Seoul_data_Json extends HttpServlet {
                         //out.println(eElement.getTextContent());
                         if (sigungu.equals(gubname)) {
                             request.setAttribute("cdname", cdname);
-
-                            ServletContext app = this.getServletContext();
-                            RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");
-                            try {
-                                dispatcher.forward(request, response);
-                            } catch (ServletException e) {
-                                out.println(e);
-                            }
-                        }
-                    }    // for end
-
-                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                        Element eElement = (Element) nNode;
-
-                        String year = getTagValue("STDR_YY_CD", eElement);
-                        String bungi = getTagValue("STDR_QU_CD", eElement);
-                        String trdarcode = getTagValue("TRDAR_SE_CD", eElement);
-                        String tadarnm = getTagValue("TRDAR_CD_NM", eElement);
-                        String code = getTagValue("TRDAR_CD", eElement);
-
-
-                        //out.println(eElement.getTextContent());
-                        if (tadarnm.equals(gil)) {
-                            request.setAttribute("year", year);
-                            request.setAttribute("bungi", bungi);
-                            request.setAttribute("trdarcode", trdarcode);
-                            request.setAttribute("gil", tadarnm);
-                            request.setAttribute("code", code);
 
                             ServletContext app = this.getServletContext();
                             RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");
@@ -140,9 +91,7 @@ public class Seoul_data_Json extends HttpServlet {
     }    // main end
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }
-

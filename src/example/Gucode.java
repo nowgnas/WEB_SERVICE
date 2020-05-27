@@ -52,10 +52,8 @@ public class Gucode {
 
 
                         //out.println(eElement.getTextContent());
-                        if (sigungu.equals("11620")) {
+                        if (sigungu.equals("11470")) {
                             System.out.println("도로명: " + cdname);
-                            System.out.println("시군구 코드: " + sigungu);
-                            System.out.println("동 코드: " + dongcode);
                             System.out.println("---------------------");
                         }
                     }    // for end

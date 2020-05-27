@@ -27,7 +27,7 @@ public class HelloWorld {
         try {
             while (true) {
                 // parsing할 url 지정(API 키 포함해서)
-                String url = "http://openapi.seoul.go.kr:8088/756b6652796c656f38345a6a667866/xml/Vwsm_TrdhlWrcPopltnQq/1/5/2020";
+                String url = "http://openapi.seoul.go.kr:8088/756b6652796c656f38345a6a667866/xml/Vwsm_TrdhlWrcPopltnQq/1/1000/2020";
 
                 DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
@@ -53,9 +53,8 @@ public class HelloWorld {
                         String tadarnm = getTagValue("TRDAR_CD_NM", eElement);
                         String code = getTagValue("TRDAR_CD", eElement);
 
-                        System.out.println("######################");
                         //System.out.println(eElement.getTextContent());
-                        if (tadarnm.equals("창경궁로35길")) {
+                        if (tadarnm.equals("오목로30길")) {
                             System.out.println("기준년코드  : " + year);
                             System.out.println("분기 코드  : " + bungi);
                             System.out.println("상권 구분 코드 : " + trdarcode);

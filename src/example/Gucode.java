@@ -1,18 +1,20 @@
 package example;
 
-//기본 XML파싱 코드
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-//http://data.seoul.go.kr/dataList/OA-15570/S/1/datasetView.do;jsessionid=68B960D4637D1C546FAA6C39EB9C32A7.new_portal-svr-11
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-public class HelloWorld {
+// 인증키: 725646724b6c656f313035735a4c5445
+//http://data.seoul.go.kr/dataList/OA-15560/S/1/datasetView.do
+
+public class Gucode {
     // tag값의 정보를 가져오는 메소드
     private static String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
@@ -23,12 +25,12 @@ public class HelloWorld {
     }
 
     public static void main(String[] args) {
+
         int page = 1;    // 페이지 초기값
         try {
             while (true) {
                 // parsing할 url 지정(API 키 포함해서)
-                String url = "http://openapi.seoul.go.kr:8088/756b6652796c656f38345a6a667866/xml/Vwsm_TrdhlWrcPopltnQq/1/5/2020";
-
+                String url = "http://openapi.seoul.go.kr:8088/725646724b6c656f313035735a4c5445/xml/TbgisTrdarRelm/1/1000/";
                 DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
                 Document doc = dBuilder.parse(url);
@@ -47,22 +49,18 @@ public class HelloWorld {
 
                         Element eElement = (Element) nNode;
 
-                        String year = getTagValue("STDR_YY_CD", eElement);
-                        String bungi = getTagValue("STDR_QU_CD", eElement);
-                        String trdarcode = getTagValue("TRDAR_SE_CD", eElement);
-                        String tadarnm = getTagValue("TRDAR_CD_NM", eElement);
-                        String code = getTagValue("TRDAR_CD", eElement);
+                        String cdname = getTagValue("TRDAR_CD_NM", eElement);
+                        String sigungu = getTagValue("SIGNGU_CD", eElement);
+                        String dongcode = getTagValue("ADSTRD_CD", eElement);
 
-                        System.out.println("######################");
-                        //System.out.println(eElement.getTextContent());
-                        if (tadarnm.equals("창경궁로35길")) {
-                            System.out.println("기준년코드  : " + year);
-                            System.out.println("분기 코드  : " + bungi);
-                            System.out.println("상권 구분 코드 : " + trdarcode);
-                            System.out.println("상권 구분 코드 명  : " + tadarnm);
-                            System.out.println("상권 구분 코드  : " + code);
+
+                        //out.println(eElement.getTextContent());
+                        if (sigungu.equals("11110")) {
+                            System.out.println("도로명: " + cdname);
+                            System.out.println("시군구 코드: " + sigungu);
+                            System.out.println("동 코드: " + dongcode);
+                            System.out.println("---------------------");
                         }
-
                     }    // for end
                 }    // if end
 
@@ -77,6 +75,5 @@ public class HelloWorld {
         } catch (Exception e) {
             e.printStackTrace();
         }    // try~catch end
-    }    // main end
-}    // class end
-
+    }
+}

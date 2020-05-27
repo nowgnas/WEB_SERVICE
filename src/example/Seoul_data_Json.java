@@ -44,7 +44,6 @@ public class Seoul_data_Json extends HttpServlet {
             while (true) {
                 // parsing할 url 지정(API 키 포함해서)
                 String url = "http://openapi.seoul.go.kr:8088/756b6652796c656f38345a6a667866/xml/Vwsm_TrdhlWrcPopltnQq/1/5/2020";
-
                 DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
                 Document doc = dBuilder.parse(url);

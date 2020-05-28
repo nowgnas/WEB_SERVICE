@@ -8,8 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setCharacterEncoding("utf-8");
-    String name = (String) request.getAttribute("cdname");
-    String[] arr = request.getParameterValues("cdname");
+    String name11 = (String) request.getAttribute("cdname");
 %>
 <!doctype html>
 <html lang="en">
@@ -37,14 +36,13 @@
         <p>도로명 선택</p>
         <input class="rounded border-solid border-2 w-full" list="gil" name="gil">
         <datalist id="gil">
-            <option>dfk
-            </option>
+            <option value="창신길"/>
+            <option value="창신2길"/>
+            <%--name11값 1개 가져올수 있음--%>
+            <option value="<%=name11%>"/>
         </datalist>
     </div>
     <input type="submit" value="전송" name="submitbtn">
 </form>
-<div>
-    name: <%=name%>
-</div>
 </body>
 </html>

@@ -12,11 +12,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 //서울시 우리마을가게 상권분석서비스(상권배후지-직장인구)
 //http://data.seoul.go.kr/dataList/OA-15570/S/1/datasetView.do;jsessionid=68B960D4637D1C546FAA6C39EB9C32A7.new_portal-svr-11
@@ -36,7 +40,10 @@ public class Seoul_data_Json extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         String gil = request.getParameter("gil");
-        String gubname = request.getParameter("Guselect");
+        String guname = request.getParameter("Guselect");
+
+        HttpSession session = request.getSession();
+
 
         PrintWriter out = response.getWriter();
 
@@ -69,12 +76,16 @@ public class Seoul_data_Json extends HttpServlet {
 
                 // 파싱할 tag
                 NodeList nList2 = doc2.getElementsByTagName("row");
-                System.out.println("파싱할 리스트 수 : " + nList.getLength());
+                System.out.println("파싱할 리스트 수 : " + nList2.getLength());
+
+                /*구 정보 배열 리스트*/
+                ArrayList<Guinfo> guinfos = new ArrayList<>();
 
 
                 for (int temp = 0; temp < nList.getLength(); temp++) {
                     Node nNode = nList.item(temp);
                     Node nNode2 = nList2.item(temp);
+                    /*상권 영역*/
                     if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
 
                         Element eElement = (Element) nNode2;
@@ -82,13 +93,28 @@ public class Seoul_data_Json extends HttpServlet {
                         String cdname = getTagValue("TRDAR_CD_NM", eElement);
                         String sigungu = getTagValue("SIGNGU_CD", eElement);
 
+                        /*Guinfo class 생성*/
+                        Guinfo name = new Guinfo(cdname);
+                        guinfos.add(name);
 
-                        //out.println(eElement.getTextContent());
-                        if (sigungu.equals(gubname)) {
+                        Guinfo findcode = null;
+                        for (Guinfo g : guinfos) {
+                            if (g.equals(guname)) {
+                                findcode = g;
+                                break;
+                            }
+                        }
+                        System.out.println(Arrays.toString(guinfos.toArray()));
+                        System.out.println(findcode);
+                        /*Guinfo*/
+
+                        /*if문에서 2개만 나옴*/
+                        if (sigungu.equals(guname)) {
                             request.setAttribute("cdname", cdname);
 
                             ServletContext app = this.getServletContext();
                             RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");
+
                             try {
                                 dispatcher.forward(request, response);
                             } catch (ServletException e) {
@@ -97,6 +123,8 @@ public class Seoul_data_Json extends HttpServlet {
                         }
                     }    // for end
 
+
+                    /*직장인구*/
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                         Element eElement = (Element) nNode;

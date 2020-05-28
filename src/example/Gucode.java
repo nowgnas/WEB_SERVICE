@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.util.ArrayList;
 
 // 인증키: 725646724b6c656f313035735a4c5445
 //http://data.seoul.go.kr/dataList/OA-15560/S/1/datasetView.do
@@ -40,6 +41,7 @@ public class Gucode {
                 NodeList nList = doc.getElementsByTagName("row");
                 System.out.println("파싱할 리스트 수 : " + nList.getLength());
 
+                int i = 0;
                 for (int temp = 0; temp < nList.getLength(); temp++) {
                     Node nNode = nList.item(temp);
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -52,9 +54,13 @@ public class Gucode {
 
                         //out.println(eElement.getTextContent());
                         if (sigungu.equals("11110")) {
-                            System.out.println("도로명: " + cdname);
-                            System.out.println("코드: " + sigungu);
+                            ArrayList<String> arr = new ArrayList<String>();
+                            arr.add(cdname);
 
+                            for (String pri : arr) {
+                                System.out.println("출력값: " + pri + "   list :" + i);
+                                i++;
+                            }
                             System.out.println("---------------------");
                         }
                     }    // for end

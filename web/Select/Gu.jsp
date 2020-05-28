@@ -1,3 +1,5 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.lang.reflect.Array" %>
 <%--
   Created by IntelliJ IDEA.
   User: leo50
@@ -6,9 +8,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     request.setCharacterEncoding("utf-8");
-    String name11 = (String) request.getAttribute("cdname");
+    String name = (String) request.getAttribute("cdname");
 %>
 <!doctype html>
 <html lang="en">
@@ -31,7 +34,6 @@
             <option value="11500">강서구</option>
         </select>
     </div>
-    <%--submit을 버튼으로 만들기--%>
     <div class="flex-1 w-1/5">
         <p>도로명 선택</p>
         <input class="rounded border-solid border-2 w-full" list="gil" name="gil">
@@ -39,7 +41,8 @@
             <option value="창신길"/>
             <option value="창신2길"/>
             <%--name11값 1개 가져올수 있음--%>
-            <option value="<%=name11%>"/>
+            <option><%=name%>
+            </option>
         </datalist>
     </div>
     <input type="submit" value="전송" name="submitbtn">

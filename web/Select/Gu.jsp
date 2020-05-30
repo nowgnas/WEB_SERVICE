@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
 <%--
   Created by IntelliJ IDEA.
   User: leo50
@@ -7,11 +8,17 @@
   Time: 오후 11:52
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <%
     request.setCharacterEncoding("utf-8");
-    String name = (String) request.getAttribute("cdname");
+    //String name = (String) request.getAttribute("cdname");
+    ArrayList<String> name = (ArrayList<String>) session.getAttribute("cdname");
+    //List<String> name = (List<String>) request.getAttribute("cdname");
+    //Iterator<String> itr = name.iterator();
+    if (name != null) {
+        System.out.println("not null");
+    }
 %>
 <!doctype html>
 <html lang="en">
@@ -32,6 +39,7 @@
             <option>구 선택</option>
             <option value="11110">종로구</option>
             <option value="11500">강서구</option>
+            <option value="11560">영등포구</option>
         </select>
     </div>
     <div class="flex-1 w-1/5">
@@ -41,8 +49,15 @@
             <option value="창신길"/>
             <option value="창신2길"/>
             <%--name11값 1개 가져올수 있음--%>
-            <option><%=name%>
+            <%
+                for (int i = 0; i < 5; i++) {
+            %>
+            <option><%=name.get(i)%>
             </option>
+
+            <%
+                }
+            %>
         </datalist>
     </div>
     <input type="submit" value="전송" name="submitbtn">

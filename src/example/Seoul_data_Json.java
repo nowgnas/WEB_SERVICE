@@ -19,7 +19,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 
 //서울시 우리마을가게 상권분석서비스(상권배후지-직장인구)
@@ -42,10 +42,9 @@ public class Seoul_data_Json extends HttpServlet {
         String gil = request.getParameter("gil");
         String guname = request.getParameter("Guselect");
 
-        HttpSession session = request.getSession();
-
-
         PrintWriter out = response.getWriter();
+
+        HttpSession session = request.getSession();
 
         int page = 1;    // 페이지 초기값
         try {
@@ -78,9 +77,7 @@ public class Seoul_data_Json extends HttpServlet {
                 NodeList nList2 = doc2.getElementsByTagName("row");
                 System.out.println("파싱할 리스트 수 : " + nList2.getLength());
 
-                /*구 정보 배열 리스트*/
-                ArrayList<Guinfo> guinfos = new ArrayList<>();
-
+                ArrayList<String> arr = new ArrayList<String>();
 
                 for (int temp = 0; temp < nList.getLength(); temp++) {
                     Node nNode = nList.item(temp);
@@ -93,33 +90,25 @@ public class Seoul_data_Json extends HttpServlet {
                         String cdname = getTagValue("TRDAR_CD_NM", eElement);
                         String sigungu = getTagValue("SIGNGU_CD", eElement);
 
-                        /*Guinfo class 생성*/
-                        Guinfo name = new Guinfo(cdname);
+                        /*  ArrayList<Guinfo> guinfos = new ArrayList<>();
+                         *//*Guinfo class 생성*//*
+                        Guinfo name = new Guinfo(cdname, sigungu);
+
                         guinfos.add(name);
 
-                        Guinfo findcode = null;
+                        int i = 0;
                         for (Guinfo g : guinfos) {
-                            if (g.equals(guname)) {
-                                findcode = g;
+                            i++;
+                            if (i==1) {
                                 break;
                             }
                         }
                         System.out.println(Arrays.toString(guinfos.toArray()));
-                        System.out.println(findcode);
-                        /*Guinfo*/
-
+                        *//*Guinfo*//*
+                         */
                         /*if문에서 2개만 나옴*/
                         if (sigungu.equals(guname)) {
-                            request.setAttribute("cdname", cdname);
-
-                            ServletContext app = this.getServletContext();
-                            RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");
-
-                            try {
-                                dispatcher.forward(request, response);
-                            } catch (ServletException e) {
-                                out.println(e);
-                            }
+                            arr.add(cdname);
                         }
                     }    // for end
 
@@ -144,17 +133,23 @@ public class Seoul_data_Json extends HttpServlet {
                             request.setAttribute("gil", tadarnm);
                             request.setAttribute("code", code);
 
-                            ServletContext app = this.getServletContext();
-                            RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");
-                            try {
-                                dispatcher.forward(request, response);
-                            } catch (ServletException e) {
-                                out.println(e);
-                            }
                         }
                     }    // for end
                 }    // if end
 
+                session.setAttribute("cdname", arr);
+
+                ServletContext app = this.getServletContext();
+                RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");
+
+                try {
+                    dispatcher.forward(request, response);
+                } catch (ServletException e) {
+                    out.println(e);
+                }
+
+                System.out.println(arr.get(5));
+                System.out.println("배열 출력: " + arr);
 
                 page += 1;
                 if (page > 1) {

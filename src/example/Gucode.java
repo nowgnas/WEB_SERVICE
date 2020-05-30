@@ -53,7 +53,7 @@ public class Gucode {
 
 
                         //out.println(eElement.getTextContent());
-                        if (sigungu.equals("11560")) {
+                        if (sigungu.equals("11110")) {
                             ArrayList<String> arr = new ArrayList<String>();
                             arr.add(cdname);
 

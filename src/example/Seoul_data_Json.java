@@ -79,6 +79,7 @@ public class Seoul_data_Json extends HttpServlet {
 
                 ArrayList<String> arr = new ArrayList<String>();
 
+                int num = 0;
                 for (int temp = 0; temp < nList.getLength(); temp++) {
                     Node nNode = nList.item(temp);
                     Node nNode2 = nList2.item(temp);
@@ -108,6 +109,7 @@ public class Seoul_data_Json extends HttpServlet {
                          */
                         /*if문에서 2개만 나옴*/
                         if (sigungu.equals(guname)) {
+                            num++;
                             arr.add(cdname);
                         }
                     }    // for end
@@ -133,6 +135,14 @@ public class Seoul_data_Json extends HttpServlet {
                             request.setAttribute("gil", tadarnm);
                             request.setAttribute("code", code);
 
+                            ServletContext app = this.getServletContext();
+                            RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");
+
+                            try {
+                                dispatcher.forward(request, response);
+                            } catch (ServletException e) {
+                                out.println(e);
+                            }
                         }
                     }    // for end
                 }    // if end
@@ -147,9 +157,6 @@ public class Seoul_data_Json extends HttpServlet {
                 } catch (ServletException e) {
                     out.println(e);
                 }
-
-                System.out.println(arr.get(5));
-                System.out.println("배열 출력: " + arr);
 
                 page += 1;
                 if (page > 1) {

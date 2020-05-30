@@ -1,6 +1,4 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Arrays" %>
 <%--
   Created by IntelliJ IDEA.
   User: leo50
@@ -12,12 +10,21 @@
 
 <%
     request.setCharacterEncoding("utf-8");
-    //String name = (String) request.getAttribute("cdname");
     ArrayList<String> name = (ArrayList<String>) session.getAttribute("cdname");
-    //List<String> name = (List<String>) request.getAttribute("cdname");
-    //Iterator<String> itr = name.iterator();
+
+    int size = 1000;
+    String[] st = new String[size];
+
     if (name != null) {
-        System.out.println("not null");
+        for (int i = 0; i < size; i++) {
+            st[i] = name.get(i);
+            if (name.size() == i + 1) {
+                size = i + 1;
+                break;
+            }
+        }
+    } else {
+        System.out.println("null?");
     }
 %>
 <!doctype html>
@@ -50,9 +57,9 @@
             <option value="창신2길"/>
             <%--name11값 1개 가져올수 있음--%>
             <%
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < size; i++) {
             %>
-            <option><%=name.get(i)%>
+            <option><%=st[i]%>
             </option>
 
             <%

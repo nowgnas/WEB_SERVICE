@@ -19,8 +19,7 @@
     <title>WEBSERVICE</title>
     <link rel="stylesheet" href="public/build/tailwind.css">
     <link rel="stylesheet" href="public/build/custom.css">
-    <script src="Loginpopup.js" type="text/javascript"></script>
-    <script src="Apidata/MapJS.js"></script>
+    <script src="Apidata/MapJS.js" type="text/javascript"></script>
 </head>
 <body>
 <!--title -->
@@ -32,10 +31,11 @@
     </nav>
     <!--login button -->
     <nav class="w-1/12">
-        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                id="login">
-            <p>LOGIN</p>
-        </button>
+        <form name="login" action="public/Login.jsp">
+            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                <p>LOGIN</p>
+            </button>
+        </form>
     </nav>
 </section>
 <!--print, input area-->

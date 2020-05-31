@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: leo50
-  Date: 2020-05-20
-  Time: 오전 12:04
+  Date: 2020-05-31
+  Time: 오후 11:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="build/tailwind.css">
 </head>
 <body>
-<section class="m-2 flex justify-center">
-    <div class="text-4xl font-bold text-center text-blue-500"><a
-            href="http://localhost:8080/WEB_SERVICE1_war_exploded/">WEB SERVICE</a>
-    </div>
+<section class="m-2 flex">
+    <nav class="w-11/12">
+        <div class="text-4xl font-bold text-center text-blue-500"><a
+                href="http://localhost:8080/WEB_SERVICE1_war_exploded/">WEB SERVICE</a>
+        </div>
+    </nav>
 </section>
-<section class="flex justify-center">
+<section class="flex">
     <div class="w-full max-w-xs justify-center">
         <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="../index.jsp">
             <div class="mb-4">
@@ -50,5 +52,6 @@
         </p>
     </div>
 </section>
+
 </body>
 </html>

@@ -91,26 +91,13 @@ public class Seoul_data_Json extends HttpServlet {
                         String cdname = getTagValue("TRDAR_CD_NM", eElement);
                         String sigungu = getTagValue("SIGNGU_CD", eElement);
 
-                        /*  ArrayList<Guinfo> guinfos = new ArrayList<>();
-                         *//*Guinfo class 생성*//*
-                        Guinfo name = new Guinfo(cdname, sigungu);
-
-                        guinfos.add(name);
-
-                        int i = 0;
-                        for (Guinfo g : guinfos) {
-                            i++;
-                            if (i==1) {
-                                break;
-                            }
-                        }
-                        System.out.println(Arrays.toString(guinfos.toArray()));
-                        *//*Guinfo*//*
-                         */
-                        /*if문에서 2개만 나옴*/
+                        /*넘어온 구 코드와 시군구 코드가 같으면*/
                         if (sigungu.equals(guname)) {
-                            num++;
-                            arr.add(cdname);
+                            /*"길"을 포함하는 도로명 출력*/
+                            if (cdname.contains("길")) {
+                                num++;
+                                arr.add(cdname);
+                            }
                         }
                     }    // for end
 

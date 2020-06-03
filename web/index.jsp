@@ -38,6 +38,9 @@
         </form>
     </nav>
 </section>
+<section class="flex w-3/5">
+    <jsp:include page="Main.jsp" flush="false"/>
+</section>
 <!--print, input area-->
 <section class="flex">
     <nav class="p-1 w-3/6 h-map">
@@ -78,5 +81,6 @@
         </div>
     </nav>
 </section>
+
 </body>
 </html>

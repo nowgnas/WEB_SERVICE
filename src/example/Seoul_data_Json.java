@@ -23,7 +23,12 @@ import java.util.List;
 
 
 //서울시 우리마을가게 상권분석서비스(상권배후지-직장인구)
+//인증키: 756b6652796c656f38345a6a667866
 //http://data.seoul.go.kr/dataList/OA-15570/S/1/datasetView.do;jsessionid=68B960D4637D1C546FAA6C39EB9C32A7.new_portal-svr-11
+
+//상권 영역
+// 인증키: 725646724b6c656f313035735a4c5445
+//http://data.seoul.go.kr/dataList/OA-15560/S/1/datasetView.do
 
 @WebServlet("/RQ")
 public class Seoul_data_Json extends HttpServlet {

@@ -14,7 +14,7 @@
 <body>
 <section class="m-2 flex justify-center">
     <div class="text-4xl font-bold text-center text-blue-500"><a
-            href="http://localhost:8080/WEB_SERVICE1_war_exploded/">WEB SERVICE</a>
+            href="../index.jsp">WEB SERVICE</a>
     </div>
 </section>
 <section class="flex justify-center">

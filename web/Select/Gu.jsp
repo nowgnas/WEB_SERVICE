@@ -34,8 +34,8 @@
 <%--지도 --%>
 <%--구 도로명 선택 --%>
 
-<form class="flex bg-purple-100 w-3/6" action="RQ" method="post" name="Guselect">
-    <div class="flex-1 w-1/5">
+<form class="flex bg-purple-100" action="RQ" method="post" name="Guselect">
+    <div class="flex-1">
         <p>구 선택</p>
         <select class="rounded-lg border-solid border-2" name="Guselect" onchange="this.form.submit()">
             <option>구 선택</option>
@@ -66,7 +66,7 @@
             <option value="11350">노원구</option>
         </select>
     </div>
-    <div class="flex-1 w-4/5">
+    <div class="flex-1">
         <p>도로명 선택</p>
         <input class="border-solid border-2 rounded-lg" list="gil" name="gil">
         <datalist id="gil">

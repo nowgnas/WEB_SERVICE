@@ -5,6 +5,7 @@
     <title>WEBSERVICE</title>
     <link rel="stylesheet" href="public/build/tailwind.css">
     <link rel="stylesheet" href="public/build/custom.css">
+    <script src="Apidata/MapJS.js" type="text/javascript"></script>
     <script>
         function openCity(cityName) {
             var i;
@@ -34,21 +35,32 @@
     <%--login--%>
 </section>
 <%--tab navigation--%>
-<section>
-    <div class="w-full overflow-hidden  bg-purple-100">
-        <button class="border-4 border-solid" onclick="openCity('London')">도로명으로 찾아보기</button>
-        <button class="border-4 border-solid" onclick="openCity('Paris')">유동인구로 찾아보기</button>
-    </div>
+<section class="flex">
+    <nav class="flex-1">
+        <div class="w-full overflow-hidden  bg-purple-100">
+            <button class="border-4 border-solid" onclick="openCity('London')">도로명으로 찾아보기</button>
+            <button class="border-4 border-solid" onclick="openCity('Paris')">유동인구로 찾아보기</button>
+        </div>
 
-    <%--첫번째 텝--%>
-    <section id="London" class="city">
-        <jsp:include page="Tabpage/Serchroadname.jsp" flush="false"/>
-    </section>
+        <%--첫번째 텝--%>
+        <section id="London" class="city flex">
+            <jsp:include page="Tabpage/Serchroadname.jsp" flush="false"/>
+        </section>
 
-    <%--두번째 탭--%>
-    <section id="Paris" class="city" style="display:none">
-        <jsp:include page="Tabpage/Searchpopulation.jsp" flush="false"/>
-    </section>
+        <%--두번째 탭--%>
+        <section id="Paris" class="city" style="display:none">
+            <jsp:include page="Tabpage/Searchpopulation.jsp" flush="false"/>
+        </section>
+    </nav>
+    <nav class="flex-1 w-3/5">
+        <%--지도 --%>
+        <div id="map" style="width:100%;height:350px;"></div>
+        <script language="JavaScript" type="text/javascript"
+                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f261be6511a4d3977d69ca432448bbd2&libraries=services"></script>
+        <!--Map javascript -->
+        <%--지도--%>
+    </nav>
 </section>
+
 </body>
 </html>

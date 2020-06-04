@@ -1,25 +1,30 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: leo50
-  Date: 2020-06-04
-  Time: 오후 1:27
-  To change this template use File | Settings | File Templates.
---%>
+<%-- 유동인구로 검색하기--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
-<html lang="en">
+<%
+    request.setCharacterEncoding("utf-8");
+    String gil = (String) request.getAttribute("gil");
+    String year = (String) request.getAttribute("year");
+    String bungi = (String) request.getAttribute("bungi");
+    String trdarcode = (String) request.getAttribute("trdarcode");
+    String code = (String) request.getAttribute("code");
+%>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WEBSERVICE</title>
+    <link rel="stylesheet" href="public/build/tailwind.css">
+    <link rel="stylesheet" href="public/build/custom.css">
 </head>
 <body>
-<section>
-    <nav>
-        <div>유동인구로 검색하기</div>
+<!--print, input area-->
+<section class="flex">
+    <nav class="p-1 w-3/6 h-map">
+        <%--지도 --%>
+        <%--구 도로명 선택 --%>
+        <section class="flex">
+            <jsp:include page="../Select/Gu.jsp" flush="false"/>
+        </section>
     </nav>
-</section>
 
+</section>
 </body>
 </html>

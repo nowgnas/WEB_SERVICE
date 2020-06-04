@@ -14,23 +14,16 @@
     <title>WEBSERVICE</title>
     <link rel="stylesheet" href="public/build/tailwind.css">
     <link rel="stylesheet" href="public/build/custom.css">
-    <script src="Apidata/MapJS.js" type="text/javascript"></script>
 </head>
 <body>
 <!--print, input area-->
 <section class="flex">
-    <nav class="p-1 w-3/6 h-map">
+    <nav class="p-1 h-map">
         <%--지도 --%>
         <%--구 도로명 선택 --%>
         <section class="flex">
             <jsp:include page="../Select/Gu.jsp" flush="false"/>
         </section>
-        <%--지도 --%>
-        <div id="map" style="width:100%;height:350px;"></div>
-        <script language="JavaScript" type="text/javascript"
-                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f261be6511a4d3977d69ca432448bbd2&libraries=services"></script>
-        <!--Map javascript -->
-        <%--지도--%>
     </nav>
 
     <!--Input-->

@@ -1,5 +1,6 @@
 package example;
 
+import com.ibm.wsdl.extensions.schema.SchemaReferenceImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -19,7 +20,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 
 
 //서울시 우리마을가게 상권분석서비스(상권배후지-직장인구)
@@ -29,6 +29,10 @@ import java.util.List;
 //상권 영역
 // 인증키: 725646724b6c656f313035735a4c5445
 //http://data.seoul.go.kr/dataList/OA-15560/S/1/datasetView.do
+
+//상주인구
+//http://data.seoul.go.kr/dataList/OA-15583/S/1/datasetView.do
+//인증키: 647a4445666c656f3930776573416f
 
 @WebServlet("/RQ")
 public class Seoul_data_Json extends HttpServlet {
@@ -60,10 +64,13 @@ public class Seoul_data_Json extends HttpServlet {
                 //상권 영역
                 String url2 = "http://openapi.seoul.go.kr:8088/725646724b6c656f313035735a4c5445/xml/TbgisTrdarRelm/1/1000/";
 
+                String url3 = "http://openapi.seoul.go.kr:8088/647a4445666c656f3930776573416f/xml/VwsmTrdhlRepopQq/1/1000/";
+
                 DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
                 Document doc = dBuilder.parse(url);
                 Document doc2 = dBuilder.parse(url2);
+                Document doc3 = dBuilder.parse(url3);
 
 
                 // root tag
@@ -74,6 +81,10 @@ public class Seoul_data_Json extends HttpServlet {
                 doc2.getDocumentElement().normalize();
                 System.out.println("Root element :" + doc2.getDocumentElement().getNodeName());
 
+                // root tag
+                doc3.getDocumentElement().normalize();
+                System.out.println("Root element :" + doc3.getDocumentElement().getNodeName());
+
                 // 파싱할 tag
                 NodeList nList = doc.getElementsByTagName("row");
                 System.out.println("파싱할 리스트 수 : " + nList.getLength());
@@ -82,12 +93,19 @@ public class Seoul_data_Json extends HttpServlet {
                 NodeList nList2 = doc2.getElementsByTagName("row");
                 System.out.println("파싱할 리스트 수 : " + nList2.getLength());
 
-                ArrayList<String> arr = new ArrayList<String>();
+                // 파싱할 tag
+                NodeList nList3 = doc3.getElementsByTagName("row");
+                System.out.println("파싱할 리스트 수 : " + nList3.getLength());
 
+                ArrayList<String> arr = new ArrayList<String>();
                 int num = 0;
                 for (int temp = 0; temp < nList.getLength(); temp++) {
                     Node nNode = nList.item(temp);
                     Node nNode2 = nList2.item(temp);
+                    Node nNode3 = nList3.item(temp);
+
+
+
                     /*상권 영역*/
                     if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -107,25 +125,30 @@ public class Seoul_data_Json extends HttpServlet {
                     }    // for end
 
 
+
                     /*직장인구*/
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                         Element eElement = (Element) nNode;
+                        Element eElement3 = (Element) nNode3;
 
-                        String year = getTagValue("STDR_YY_CD", eElement);
-                        String bungi = getTagValue("STDR_QU_CD", eElement);
-                        String trdarcode = getTagValue("TRDAR_SE_CD", eElement);
                         String tadarnm = getTagValue("TRDAR_CD_NM", eElement);
-                        String code = getTagValue("TRDAR_CD", eElement);
+                        String man = getTagValue("ML_WRC_POPLTN_CO", eElement);
+                        String women = getTagValue("FML_WRC_POPLTN_CO", eElement);
+
+                        String manlive = getTagValue("ML_REPOP_CO", eElement3);
+                        String womenlive = getTagValue("FML_REPOP_CO", eElement3);
 
 
                         //out.println(eElement.getTextContent());
                         if (tadarnm.equals(gil)) {
-                            request.setAttribute("year", year);
-                            request.setAttribute("bungi", bungi);
-                            request.setAttribute("trdarcode", trdarcode);
                             request.setAttribute("gil", tadarnm);
-                            request.setAttribute("code", code);
+                            request.setAttribute("man", man);
+                            request.setAttribute("women", women);
+
+                            System.out.println("남자" + manlive);
+                            session.setAttribute("manlive", manlive);
+                            session.setAttribute("womenlive", womenlive);
 
                             ServletContext app = this.getServletContext();
                             RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");

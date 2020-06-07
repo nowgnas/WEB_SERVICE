@@ -25,5 +25,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.54" level="application_server_libraries" />
     <orderEntry type="library" name="JAX-WS-Apache Axis" level="project" />
     <orderEntry type="library" name="org.apache.tomcat:servlet-api:6.0.53" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.18" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.42-bin" level="project" />
   </component>
 </module>

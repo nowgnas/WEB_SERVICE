@@ -4,10 +4,20 @@
 <%
     request.setCharacterEncoding("utf-8");
     String gil = (String) request.getAttribute("gil");
-    String year = (String) request.getAttribute("year");
-    String bungi = (String) request.getAttribute("bungi");
-    String trdarcode = (String) request.getAttribute("trdarcode");
-    String code = (String) request.getAttribute("code");
+    String man = (String) request.getAttribute("man");
+    String women = (String) request.getAttribute("women");
+
+    String manlive = (String) session.getAttribute("manlive");
+    String womenlive = (String) session.getAttribute("womenlive");
+    System.out.println(manlive + "page");
+
+    if (gil == null) {
+        gil = " ";
+        man = " ";
+        women = " ";
+        manlive = " ";
+        womenlive = " ";
+    }
 %>
 <html>
 <head>
@@ -29,23 +39,20 @@
     <!--Input-->
     <nav class="flex bg-teal-200">
         <div>
-            <div>User information</div>
-            <br>
-            <div>
-                기준 년 코드: <%=year%>
+            <div><span id="gilname"><%=gil%>
+            </span>의 정보
             </div>
             <div>
-                번지 = <%=bungi%><br>
+                남자 직장 인구수 : <%=man%> 명
             </div>
             <div>
-                상권 분류 코드 = <%=trdarcode%><br>
+                여자 직장 인구수 : <%=women%> 명
             </div>
             <div>
-                상권 이름 = <span id="gilname"><%=gil%>
-            </span> <br>
+                남자 상주 인구수 : <%=manlive%> 명
             </div>
             <div>
-                상권 코드 = <%=code%>
+                여자 상주 인구수 : <%=womenlive%> 명
             </div>
         </div>
     </nav>

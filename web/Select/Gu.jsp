@@ -18,7 +18,7 @@
             }
         }
     } else {
-        System.out.println("null?");
+        System.out.println("GU null?");
     }
 %>
 <!doctype html>

@@ -26,16 +26,16 @@ public class EmpDAO {
 
         try {
             con = DriverManager.getConnection(url, userid, passwd);
-            String sql = "SELECT id,name,salary,depart from emp";
+            String sql = "SELECT id,pw,name,email from userinfo";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 String id = rs.getString("id");
+                String pw = rs.getString("pw");
                 String name = rs.getString("name");
-                int salary = rs.getInt("salary");
-                String depart = rs.getString("depart");
+                String email = rs.getString("email");
 
-                EmpDTO dto = new EmpDTO(id, name, salary, depart);
+                EmpDTO dto = new EmpDTO(id, pw, name, email);
                 list.add(dto);
             }
         } catch (Exception e) {

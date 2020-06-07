@@ -44,11 +44,9 @@ public class SelectDAOServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-
-        System.out.println(username + "," + password);
+        String userinfoget = username + password;
 
         PrintWriter out = response.getWriter();
-        out.print("<html><body>");
 
         EmpDAO dao = new EmpDAO();
         ArrayList<EmpDTO> list = dao.select();
@@ -56,27 +54,23 @@ public class SelectDAOServlet extends HttpServlet {
         ArrayList<String> compare = new ArrayList<>();
 
         for (EmpDTO dto : list) {
-            String emp_id = dto.getId();
-            String ename = dto.getName();
-            int salary = dto.getSalary();
-            String depart = dto.getDepart();
+            String id = dto.getId();
+            String pw = dto.getPw();
 
-            compare.add(emp_id);
-            compare.add(depart);
-
-            out.print(emp_id + "\t" + ename + "\t" + salary + "\t" + depart + "<br>");
+            String userinfo = id + pw;
+            compare.add(userinfo);
         }
+
         for (String comp : compare) {
-            if (comp.equals(username)) {
+            if (comp.equals(userinfoget)) {
                 System.out.println("일치");
-                break;
-            } else {
-                System.out.println("불일치");
-            }
+                response.sendRedirect("index.jsp");
 
+            } else {
+                out.println("<script>alert('아이디나 패스워드가 틀렸습니다.'); location.href='public/Login.jsp';</script>");
+                break;
+            }
         }
 
-        out.print("</body></html>");
     }
-
 }

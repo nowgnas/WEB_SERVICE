@@ -2,19 +2,18 @@ package example;
 
 public class EmpDTO {
     String id;
+    String pw;
     String name;
-    int salary;
-    String depart;
+    String email;
 
     public EmpDTO() {
     }
 
-    public EmpDTO(String id, String name, int salary, String depart) {
+    public EmpDTO(String id, String pw, String name, String email) {
         this.id = id;
+        this.pw = pw;
         this.name = name;
-        this.salary = salary;
-        this.depart = depart;
-
+        this.email = email;
     }
 
     public String getId() {
@@ -25,6 +24,14 @@ public class EmpDTO {
         this.id = id;
     }
 
+    public String getPw() {
+        return pw;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
     public String getName() {
         return name;
     }
@@ -33,20 +40,12 @@ public class EmpDTO {
         this.name = name;
     }
 
-    public int getSalary() {
-        return salary;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public String getDepart() {
-        return depart;
-    }
-
-    public void setDepart(String depart) {
-        this.depart = depart;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

@@ -9,7 +9,6 @@
 
     String manlive = (String) session.getAttribute("manlive");
     String womenlive = (String) session.getAttribute("womenlive");
-    System.out.println(manlive + "page");
 
     if (gil == null) {
         gil = " ";
@@ -27,21 +26,24 @@
 </head>
 <body>
 <!--print, input area-->
-<section class="flex">
+<section class="flex w-full">
     <nav class="p-1 h-map">
         <%--지도 --%>
         <%--구 도로명 선택 --%>
-        <section class="flex">
+        <section>
             <jsp:include page="../Select/Gu.jsp" flush="false"/>
         </section>
     </nav>
+    <%--TODO 선택 form이랑 결과 nav 거리 두기--%>
+    <%--TODO 인구관련은 form 밑으로 , 오른쪽에 다른 데이터 넣기--%>
 
     <!--Input-->
-    <nav class="flex bg-teal-200">
-        <div>
+    <nav class="flex bg-teal-200 w-1/2 p-1">
+        <div class="">
             <div><span id="gilname"><%=gil%>
             </span>의 정보
             </div>
+            <br>
             <div>
                 남자 직장 인구수 : <%=man%> 명
             </div>

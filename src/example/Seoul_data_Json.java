@@ -74,27 +74,21 @@ public class Seoul_data_Json extends HttpServlet {
 
                 // root tag
                 doc.getDocumentElement().normalize();
-                System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
                 // root tag
                 doc2.getDocumentElement().normalize();
-                System.out.println("Root element :" + doc2.getDocumentElement().getNodeName());
 
                 // root tag
                 doc3.getDocumentElement().normalize();
-                System.out.println("Root element :" + doc3.getDocumentElement().getNodeName());
 
                 // 파싱할 tag
                 NodeList nList = doc.getElementsByTagName("row");
-                System.out.println("파싱할 리스트 수 : " + nList.getLength());
 
                 // 파싱할 tag
                 NodeList nList2 = doc2.getElementsByTagName("row");
-                System.out.println("파싱할 리스트 수 : " + nList2.getLength());
 
                 // 파싱할 tag
                 NodeList nList3 = doc3.getElementsByTagName("row");
-                System.out.println("파싱할 리스트 수 : " + nList3.getLength());
 
                 ArrayList<String> arr = new ArrayList<String>();
                 int num = 0;
@@ -139,13 +133,11 @@ public class Seoul_data_Json extends HttpServlet {
                         String womenlive = getTagValue("FML_REPOP_CO", eElement3);
 
 
-                        //out.println(eElement.getTextContent());
                         if (tadarnm.equals(gil)) {
                             request.setAttribute("gil", tadarnm);
                             request.setAttribute("man", man);
                             request.setAttribute("women", women);
 
-                            System.out.println("남자" + manlive);
                             session.setAttribute("manlive", manlive);
                             session.setAttribute("womenlive", womenlive);
 

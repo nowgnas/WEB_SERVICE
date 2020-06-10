@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/*TODO 끌어올 데이터 좀 생각해보기*/
+
 /**
  * Servlet implementation class SelectDAOServlet
  */
@@ -21,7 +24,6 @@ public class SelectDAOServlet extends HttpServlet {
      */
     public SelectDAOServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -30,7 +32,6 @@ public class SelectDAOServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // TODO Auto-generated method stub
         doPost(request, response);
     }
 

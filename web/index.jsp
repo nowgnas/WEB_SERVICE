@@ -27,13 +27,13 @@
 <%--tab navigation--%>
 <section class="flex">
     <nav class="flex-1">
-        <section id="London" class="city flex">
+        <section class="flex">
             <jsp:include page="Tabpage/Serchroadname.jsp" flush="false"/>
         </section>
     </nav>
-    <nav class="flex-1 w-3/5">
+    <nav class="flex-1 w-3/5 p-1">
         <%--지도 --%>
-        <div id="map" style="width:100%;height:350px;"></div>
+        <div class="rounded-lg" id="map" style="width:100%;height:350px;"></div>
         <script language="JavaScript" type="text/javascript"
                 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f261be6511a4d3977d69ca432448bbd2&libraries=services"></script>
         <!--Map javascript -->

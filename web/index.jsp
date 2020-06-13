@@ -15,7 +15,12 @@
     </nav>
     <%--title--%>
     <!--login button -->
-    <nav class="w-1/12">
+    <nav class="w-2/12 flex">
+        <form class="mr-3" name="login" action="About/About.jsp">
+            <button class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
+                <p>ABOUT</p>
+            </button>
+        </form>
         <form name="login" action="public/Login.jsp">
             <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                 <p>LOGIN</p>
@@ -40,6 +45,5 @@
         <%--지도--%>
     </nav>
 </section>
-
 </body>
 </html>

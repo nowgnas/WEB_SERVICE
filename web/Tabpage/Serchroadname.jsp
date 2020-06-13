@@ -11,11 +11,11 @@
     String womenlive = (String) session.getAttribute("womenlive");
 
     if (gil == null) {
-        gil = " ";
-        man = " ";
-        women = " ";
-        manlive = " ";
-        womenlive = " ";
+        gil = "도로명";
+        man = "0";
+        women = "0";
+        manlive = "0";
+        womenlive = "0";
     }
 %>
 <html>
@@ -27,10 +27,10 @@
 <body>
 <!--print, input area-->
 <section class="flex w-full">
-    <nav class="p-1 h-map">
+    <nav class="p-1 h-map bg-indigo-400 rounded-lg bg">
         <%--지도 --%>
         <%--구 도로명 선택 --%>
-        <section>
+        <section class="justify-center">
             <jsp:include page="../Select/Gu.jsp" flush="false"/>
         </section>
     </nav>
@@ -38,8 +38,8 @@
     <%--TODO 인구관련은 form 밑으로 , 오른쪽에 다른 데이터 넣기--%>
 
     <!--Input-->
-    <nav class="flex bg-teal-200 w-1/2 p-1">
-        <div class="">
+    <nav class="flex justify-center rounded-lg bg-blue-300 w-1/2 p-1">
+        <div class="pt-5">
             <div><span id="gilname"><%=gil%>
             </span>의 정보
             </div>
@@ -47,12 +47,15 @@
             <div>
                 남자 직장 인구수 : <%=man%> 명
             </div>
+            <br>
             <div>
                 여자 직장 인구수 : <%=women%> 명
             </div>
+            <br>
             <div>
                 남자 상주 인구수 : <%=manlive%> 명
             </div>
+            <br>
             <div>
                 여자 상주 인구수 : <%=womenlive%> 명
             </div>

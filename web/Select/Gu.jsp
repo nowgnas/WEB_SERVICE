@@ -34,11 +34,8 @@
 <nav class="p-2">
     <%--지도 --%>
     <%--구 도로명 선택 --%>
-    <div class="pb-4">
-        찾고 싶은 상권의 도로명을 검색하세요
-    </div>
-    <form class="flex bg-purple-100" action="RQ" method="post" name="Guselect">
-        <div class="flex-1">
+    <form class="flex" action="RQ" method="post" name="Guselect">
+        <div class="flex-1 bg-green-300 rounded-lg">
             <p>구 선택</p>
             <select class="rounded-lg border-solid border-2" name="Guselect" onchange="this.form.submit()">
                 <option>구 선택</option>
@@ -69,7 +66,7 @@
                 <option value="11350">노원구</option>
             </select>
         </div>
-        <div class="flex-1">
+        <div class="flex-1 rounded-lg bg-green-300">
             <p>도로명 선택</p>
             <input class="border-solid border-2 rounded-lg" list="gil" name="gil">
             <datalist id="gil">
@@ -92,7 +89,10 @@
                 <%}%>
             </datalist>
         </div>
-        <input class="rounded-lg" type="submit" value="전송" name="submitbtn">
+        <input class="border-2 bg-white border-yellow-500 hover:bg-blue-500 hover:text-white rounded-lg"
+               type="submit"
+               value="전송"
+               name="submitbtn">
     </form>
 </nav>
 </body>

@@ -17,6 +17,8 @@
                 break;
             }
         }
+    } else {
+        System.out.println("정상동작");
     }
 %>
 <!doctype html>
@@ -72,6 +74,13 @@
             <input class="border-solid border-2 rounded-lg" list="gil" name="gil">
             <datalist id="gil">
                 <%
+                    if (st[0] == null) {
+                %>
+                <option></option>
+                <%
+                } else {
+                %>
+                <%
                     for (int i = 0; i < size; i++) {
                 %>
                 <option><%=st[i]%>
@@ -80,6 +89,7 @@
                 <%
                     }
                 %>
+                <%}%>
             </datalist>
         </div>
         <input class="rounded-lg" type="submit" value="전송" name="submitbtn">

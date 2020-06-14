@@ -3,6 +3,8 @@ package example;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,7 +67,15 @@ public class SelectDAOServlet extends HttpServlet {
         for (String comp : compare) {
             if (comp.equals(userinfoget)) {
                 System.out.println("일치");
-                response.sendRedirect("index.jsp");
+                request.setAttribute("name", username);
+
+                ServletContext app = this.getServletContext();
+                RequestDispatcher dispatcher = app.getRequestDispatcher("/index.jsp");
+                try {
+                    dispatcher.forward(request, response);
+                } catch (ServletException e) {
+                    out.println(e);
+                }
 
             } else {
                 out.println("<script>alert('아이디나 패스워드가 틀렸습니다.'); location.href='public/Login.jsp';</script>");

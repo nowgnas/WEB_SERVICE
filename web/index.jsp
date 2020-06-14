@@ -1,5 +1,9 @@
 <%--main page--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<%
+    request.setCharacterEncoding("utf-8");
+    String name = (String) request.getAttribute("name");
+%>
 <html>
 <head>
     <title>WEBSERVICE</title>
@@ -13,21 +17,17 @@
     <nav class="w-11/12">
         <div class="text-4xl font-bold text-center text-blue-500">서울시 상권 분석 서비스</div>
     </nav>
-    <%--title--%>
-    <!--login button -->
-    <nav class="w-2/12 flex">
-        <form class="mr-3" name="login" action="About/About.jsp">
-            <button class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
-                <p>ABOUT</p>
-            </button>
-        </form>
-        <form name="login" action="public/Login.jsp">
+    <nav class="m-1 w-2/12">
+        <%if (name == null) {%>
+        <form class="text-center" name="login" action="public/Login.jsp">
             <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                 <p>LOGIN</p>
             </button>
         </form>
+        <%} else {%>
+        <div class="p-2 text-center border-blue-500 border-2 border-solid rounded-lg"><%=name%> 님 반갑습니다.</div>
+        <%}%>
     </nav>
-    <%--login--%>
 </section>
 <%--tab navigation--%>
 <section class="flex">

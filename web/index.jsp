@@ -41,8 +41,6 @@
         <div class="rounded-lg" id="map" style="width:100%;height:350px;"></div>
         <script language="JavaScript" type="text/javascript"
                 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f261be6511a4d3977d69ca432448bbd2&libraries=services"></script>
-        <!--Map javascript -->
-        <%--지도--%>
     </nav>
 </section>
 </body>

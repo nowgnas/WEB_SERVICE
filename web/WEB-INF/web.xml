@@ -4,7 +4,13 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <display-name>Apache-Axis</display-name>
+    <description>
+        WEB_SERVICE
+    </description>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <display-name>상권 분석 서비스</display-name>
     <servlet>
         <display-name>Apache-Axis Servlet</display-name>
         <servlet-name>AxisServlet</servlet-name>
@@ -50,4 +56,12 @@
         <extension>wsdl</extension>
         <mime-type>text/xml</mime-type>
     </mime-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error/404Err.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/Error/500Err.jsp</location>
+    </error-page>
 </web-app>

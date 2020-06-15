@@ -44,10 +44,13 @@ public class Seoul_data_Json extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*Gu.jsp에서 전송한 값들을 받아온다.*/
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
+        /*도로명 선택 값 받아오기*/
         String gil = request.getParameter("gil");
+        /*구 선택한 값 받아오기*/
         String guname = request.getParameter("Guselect");
 
         PrintWriter out = response.getWriter();
@@ -62,11 +65,12 @@ public class Seoul_data_Json extends HttpServlet {
                 String url = "http://openapi.seoul.go.kr:8088/756b6652796c656f38345a6a667866/xml/Vwsm_TrdhlWrcPopltnQq/1/1000/2020";
                 //상권 영역
                 String url2 = "http://openapi.seoul.go.kr:8088/725646724b6c656f313035735a4c5445/xml/TbgisTrdarRelm/1/1000/";
-
+                /*유동인구*/
                 String url3 = "http://openapi.seoul.go.kr:8088/647a4445666c656f3930776573416f/xml/VwsmTrdhlRepopQq/1/1000/";
 
                 DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
+
                 Document doc = dBuilder.parse(url);
                 Document doc2 = dBuilder.parse(url2);
                 Document doc3 = dBuilder.parse(url3);
@@ -74,19 +78,15 @@ public class Seoul_data_Json extends HttpServlet {
 
                 // root tag
                 doc.getDocumentElement().normalize();
-
                 // root tag
                 doc2.getDocumentElement().normalize();
-
                 // root tag
                 doc3.getDocumentElement().normalize();
 
                 // 파싱할 tag
                 NodeList nList = doc.getElementsByTagName("row");
-
                 // 파싱할 tag
                 NodeList nList2 = doc2.getElementsByTagName("row");
-
                 // 파싱할 tag
                 NodeList nList3 = doc3.getElementsByTagName("row");
 
@@ -97,9 +97,8 @@ public class Seoul_data_Json extends HttpServlet {
                     Node nNode2 = nList2.item(temp);
                     Node nNode3 = nList3.item(temp);
 
-
-
                     /*상권 영역*/
+                    /**/
                     if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
 
                         Element eElement = (Element) nNode2;
@@ -117,22 +116,23 @@ public class Seoul_data_Json extends HttpServlet {
                         }
                     }    // for end
 
-
-
                     /*직장인구*/
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                         Element eElement = (Element) nNode;
                         Element eElement3 = (Element) nNode3;
 
+                        /*도로명*/
                         String tadarnm = getTagValue("TRDAR_CD_NM", eElement);
+                        /*남여 직장인구*/
                         String man = getTagValue("ML_WRC_POPLTN_CO", eElement);
                         String women = getTagValue("FML_WRC_POPLTN_CO", eElement);
-
+                        /*남여 상주인구*/
                         String manlive = getTagValue("ML_REPOP_CO", eElement3);
                         String womenlive = getTagValue("FML_REPOP_CO", eElement3);
 
 
+                        /*받아온 도로명과 일치하는 정보*/
                         if (tadarnm.equals(gil)) {
                             request.setAttribute("gil", tadarnm);
                             request.setAttribute("man", man);
@@ -153,6 +153,7 @@ public class Seoul_data_Json extends HttpServlet {
                     }    // for end
                 }    // if end
 
+                /*받아온 구 정보와 일치하는 도로명 리스트*/
                 session.setAttribute("cdname", arr);
 
                 ServletContext app = this.getServletContext();

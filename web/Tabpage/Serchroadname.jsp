@@ -3,13 +3,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%
     request.setCharacterEncoding("utf-8");
+    /*API servlet에서 데이터를 받아온다.*/
+    /*도로명*/
     String gil = (String) request.getAttribute("gil");
+    /*남자 직장인구*/
     String man = (String) request.getAttribute("man");
+    /*여자 직장인구*/
     String women = (String) request.getAttribute("women");
 
+    /*남자 상주인구*/
     String manlive = (String) session.getAttribute("manlive");
+    /*여자 상주인구*/
     String womenlive = (String) session.getAttribute("womenlive");
 
+    /*초기 페이지 로딩시 모든 값이 null*/
     if (gil == null) {
         gil = "도로명";
         man = "0";
@@ -25,19 +32,15 @@
     <link rel="stylesheet" href="public/build/custom.css">
 </head>
 <body>
-<!--print, input area-->
 <section class="flex w-full">
     <nav class="p-1 h-map bg-indigo-400 rounded-lg bg">
-        <%--지도 --%>
         <%--구 도로명 선택 --%>
         <section class="justify-center">
             <jsp:include page="../Select/Gu.jsp" flush="false"/>
         </section>
     </nav>
-    <%--TODO 선택 form이랑 결과 nav 거리 두기--%>
-    <%--TODO 인구관련은 form 밑으로 , 오른쪽에 다른 데이터 넣기--%>
 
-    <!--Input-->
+    <%--검색 한 데이터--%>
     <nav class="flex justify-center rounded-lg bg-blue-300 w-1/2 p-1">
         <div class="pt-5">
             <div><span id="gilname"><%=gil%>

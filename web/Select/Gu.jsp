@@ -4,11 +4,16 @@
 
 <%
     request.setCharacterEncoding("utf-8");
+    /*API 연동한 servlet에서 선택한 구에 속한 도로명을 받아온다.*/
     ArrayList<String> name = (ArrayList<String>) session.getAttribute("cdname");
 
+    /*데이터 최대 1000개*/
     int size = 1000;
+    /*받아온 도로명 넣을 배열 생성*/
     String[] st = new String[size];
 
+    /*초기 페이지 로딩시 도로명은 null이다.*/
+    /*null이면 ArrayList에서 도로명을 가져온다.*/
     if (name != null) {
         for (int i = 0; i < size; i++) {
             st[i] = name.get(i);
@@ -37,6 +42,7 @@
     <form class="flex" action="RQ" method="post" name="Guselect">
         <div class="flex-1 bg-green-300 rounded-lg">
             <p>구 선택</p>
+            <%--구를 선택하면 즉시 API servlet에 선택한 구가 전송된다.--%>
             <select class="rounded-lg border-solid border-2" name="Guselect" onchange="this.form.submit()">
                 <option>구 선택</option>
                 <option value="11110">종로구</option>
@@ -80,6 +86,7 @@
                 <%
                     for (int i = 0; i < size; i++) {
                 %>
+                <%--option태그에 도로명을 하나씩 지정한다.--%>
                 <option><%=st[i]%>
                 </option>
 

@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-/*TODO 끌어올 데이터 좀 생각해보기*/
-
 /**
  * Servlet implementation class SelectDAOServlet
  */
@@ -43,10 +40,15 @@ public class SelectDAOServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /*Java Bean을 사용하여 사용자 정보를 확인한다.*/
         response.setContentType("text/html;charset=EUC-KR");
+
+        /*로그인시 사용자가 입력한 ID*/
         String username = request.getParameter("username");
+        /*로그인시 사용자가 입력한 PW*/
         String password = request.getParameter("password");
 
+        /*사용자 ID+PW*/
         String userinfoget = username + password;
 
         PrintWriter out = response.getWriter();
@@ -54,6 +56,7 @@ public class SelectDAOServlet extends HttpServlet {
         EmpDAO dao = new EmpDAO();
         ArrayList<EmpDTO> list = dao.select();
 
+        /*MySql에 있는 사용자 정보를 저장할 리스트*/
         ArrayList<String> compare = new ArrayList<>();
 
         for (EmpDTO dto : list) {
@@ -67,6 +70,7 @@ public class SelectDAOServlet extends HttpServlet {
         for (String comp : compare) {
             if (comp.equals(userinfoget)) {
                 System.out.println("일치");
+                /*메인 페이지에 넘길 사용자ID*/
                 request.setAttribute("name", username);
 
                 ServletContext app = this.getServletContext();
@@ -77,6 +81,7 @@ public class SelectDAOServlet extends HttpServlet {
                     out.println(e);
                 }
 
+                /*로그인 실패시 경고창 띄우기*/
             } else {
                 out.println("<script>alert('아이디나 패스워드가 틀렸습니다.'); location.href='public/Login.jsp';</script>");
                 break;

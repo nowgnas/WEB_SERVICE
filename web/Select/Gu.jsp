@@ -37,7 +37,6 @@
 </head>
 <body>
 <nav class="p-2">
-    <%--지도 --%>
     <%--구 도로명 선택 --%>
     <form class="flex" action="RQ" method="post" name="Guselect">
         <div class="flex-1 bg-green-300 rounded-lg">

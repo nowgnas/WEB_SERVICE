@@ -30,6 +30,7 @@
         <div class="p-2 text-center border-blue-500 border-2 border-solid rounded-lg"><%=name%> 님 반갑습니다.</div>
         <%}%>
     </nav>
+
 </section>
 <section class="flex">
     <nav class="flex-1">
